@@ -1,0 +1,20 @@
+from src.utils import information_gain
+import numpy as np
+import random
+
+def find_split_point(X, y, max_features):
+    ...
+    # Copy logic from your original `find_split_point` function
+    ...
+
+def terminal_node(node):
+    ...
+    
+def split_node(node, max_features, min_samples_split, max_depth, depth):
+    ...
+    
+def build_tree(X_bootstrap, y_bootstrap, max_depth, min_samples_split, max_features):
+    ...
+    
+def predict_tree(tree, x):
+    ...
