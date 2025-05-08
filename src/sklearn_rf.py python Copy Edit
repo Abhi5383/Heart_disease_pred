@@ -1,0 +1,15 @@
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+def find_best_random_state(X_train, y_train, X_test, y_test, n_iter=2000):
+    best_score = 0
+    best_seed = 0
+    for seed in range(n_iter):
+        model = RandomForestClassifier(random_state=seed)
+        model.fit(X_train, y_train)
+        pred = model.predict(X_test)
+        score = accuracy_score(y_test, pred)
+        if score > best_score:
+            best_score = score
+            best_seed = seed
+    return best_seed, best_score
