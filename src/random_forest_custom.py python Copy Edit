@@ -1,0 +1,17 @@
+from src.decision_tree import build_tree, predict_tree
+from src.utils import draw_bootstrap
+from src.metrics import oob_score
+import numpy as np
+
+def random_forest(X_train, y_train, n_estimators, max_features, max_depth, min_samples_split):
+    trees, oob_errors = [], []
+    for _ in range(n_estimators):
+        X_boot, y_boot, X_oob, y_oob = draw_bootstrap(X_train, y_train)
+        tree = build_tree(X_boot, y_boot, max_depth, min_samples_split, max_features)
+        trees.append(tree)
+        oob_errors.append(oob_score(tree, X_oob, y_oob))
+    print(f"OOB estimate: {np.mean(oob_errors):.2f}")
+    return trees
+
+def predict_rf(trees, X_test):
+    ...
